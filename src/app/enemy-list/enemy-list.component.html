@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="enemies">
+
+    <ng-container matColumnDef="name">
+        <th class="name" mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+        <th class="level" mat-header-cell *matHeaderCellDef> Level </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.level}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vocation">
+        <th class="vocation" mat-header-cell *matHeaderCellDef> Vocation </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.vocation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reason">
+        <th class="reason" mat-header-cell *matHeaderCellDef> Reason </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.reason}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="payment">
+        <th class="payment" mat-header-cell *matHeaderCellDef> Payment </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.payment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="created_at">
+        <th class="created" mat-header-cell *matHeaderCellDef> Hunted since </th>
+        <td mat-cell *matCellDef="let enemy"> {{enemy.attributes.created_at | date}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

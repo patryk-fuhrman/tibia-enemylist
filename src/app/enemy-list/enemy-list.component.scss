@@ -1,0 +1,27 @@
+:host {
+    th {
+        &.name {
+            width: 15%;
+        }
+
+        &.level {
+            width: 5%;
+        }
+
+        &.vocation {
+            width: 5%
+        }
+        
+        &.reason {
+            width: 50%;
+        }
+
+        &.payment {
+            width: 15%;
+        }
+
+        &.created {
+            width: 10%;
+        }
+    }
+}
