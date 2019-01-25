@@ -1,3 +1,7 @@
+<div class="filters">
+    <mat-checkbox [(ngModel)]="onlineOnly" (change)="toggleOnlineOnly($event.checked)">Online only</mat-checkbox>
+</div>
+
 <table mat-table [dataSource]="enemies">
 
     <ng-container matColumnDef="name">

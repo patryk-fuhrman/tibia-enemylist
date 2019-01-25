@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { Observable, Subject } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { Subject } from 'rxjs'
+import { take, takeUntil } from 'rxjs/operators'
 import { Enemy } from './models/enemy'
 import { EnemyListService } from './services/enemy-list.service'
 
@@ -8,9 +8,11 @@ import { EnemyListService } from './services/enemy-list.service'
     templateUrl: './enemy-list.component.html',
     styleUrls: ['./enemy-list.component.scss'],
 })
-export class EnemyListComponent implements OnDestroy {
+export class EnemyListComponent implements OnInit, OnDestroy {
 
-    public enemies: Observable<Enemy[]> = this.enemyListService.getHuntedPlayers()
+    public onlineOnly: boolean = false
+
+    public enemies: Enemy[] = []
 
     public displayedColumns: string[] = ['name', 'level', 'vocation', 'reason', 'payment', 'created_at']
 
@@ -20,7 +22,25 @@ export class EnemyListComponent implements OnDestroy {
         private enemyListService: EnemyListService,
     ) {}
 
+    public ngOnInit(): void {
+        this.getEnemies(false)
+    }
+
     public ngOnDestroy(): void {
         this.destroyed$.next()
+    }
+
+    public toggleOnlineOnly(checked: boolean): void {
+        this.getEnemies(checked)
+    }
+
+    public getEnemies(online: boolean): void {
+        this.enemyListService
+            .getHuntedPlayers(online)
+            .pipe(
+                takeUntil(this.destroyed$),
+                take(1),
+            )
+            .subscribe(enemies => this.enemies = enemies)
     }
 }

@@ -15,9 +15,12 @@ export class EnemyListService {
         private loaderService: LoaderService,
     ) { }
 
-    public getHuntedPlayers(): Observable<any> {
+    public getHuntedPlayers(onlineOnly: boolean = false): Observable<any> {
+        const url: string = onlineOnly ? `${environment.apiBaseUrl}/enemies?online=${onlineOnly}` : `${environment.apiBaseUrl}/enemies`
+        this.loaderService.show$.next(true)
+
         return this.httpClient
-            .get<{data: [{id: number, type: string, attributes: Attributes}]}>(`${environment.apiBaseUrl}/enemies`)
+            .get<{data: [{id: number, type: string, attributes: Attributes}]}>(url)
             .pipe(
                 map(data => data.data),
                 map(json => json.map(data => new Enemy(data.id, data.type, data.attributes))),
