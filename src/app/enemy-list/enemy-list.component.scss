@@ -1,27 +1,31 @@
 :host {
-    th {
-        &.name {
-            width: 15%;
-        }
+    table {
+        width: 100%;
 
-        &.level {
-            width: 5%;
-        }
+        th {
+            &.name {
+                width: 15%;
+            }
 
-        &.vocation {
-            width: 5%
-        }
-        
-        &.reason {
-            width: 50%;
-        }
+            &.level {
+                width: 5%;
+            }
 
-        &.payment {
-            width: 15%;
-        }
+            &.vocation {
+                width: 5%
+            }
 
-        &.created {
-            width: 10%;
+            &.reason {
+                width: 50%;
+            }
+
+            &.payment {
+                width: 15%;
+            }
+
+            &.created {
+                width: 10%;
+            }
         }
     }
 }

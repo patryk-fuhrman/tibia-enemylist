@@ -5,6 +5,7 @@ import { Enemy } from './models/enemy'
 import { EnemyListService } from './services/enemy-list.service'
 
 @Component({
+    selector: 'app-enemy-list',
     templateUrl: './enemy-list.component.html',
     styleUrls: ['./enemy-list.component.scss'],
 })
@@ -20,7 +21,7 @@ export class EnemyListComponent implements OnInit, OnDestroy {
 
     constructor(
         private enemyListService: EnemyListService,
-    ) {}
+    ) { }
 
     public ngOnInit(): void {
         this.getEnemies(false)
